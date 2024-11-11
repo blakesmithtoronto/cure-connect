@@ -1,33 +1,29 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
+import { UseFormReturn } from "react-hook-form"
+import {
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+} from "@/components/ui/form"
+import { Checkbox } from "@/components/ui/checkbox"
 
-export function RedFlags() {
-  return (
-    <>
-      <p className="mb-4 text-sm text-muted-foreground">
-        If any of the following red flags are identified, referring the patient
-        to another health care provider is strongly recommended
-      </p>
-      <div className="space-y-2">
-        <div className="flex items-center space-x-2">
-          <Checkbox id="newIncontinence" />
-          <Label htmlFor="newIncontinence">New incontinence</Label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <Checkbox id="historyNephrolithiasis" />
-          <Label htmlFor="historyNephrolithiasis">
-            History of nephrolithiasis (kidney stones)
-          </Label>
-        </div>
-        <div className="flex items-center space-x-2">
-          <Checkbox id="voidingIssues" />
-          <Label htmlFor="voidingIssues">
-            Women who have voiding issues (e.g. incontinence, prolapse)
-          </Label>
-        </div>
-        {/* Add more red flags as checkboxes */}
-      </div>
-    </>
-  );
+interface RedFlagsProps {
+  form: UseFormReturn<any>
 }
+
+export default function RedFlags({ form }: RedFlagsProps) {
+  return (
+    <div className="space-y-6">
+      <p className="text-sm text-muted-foreground">
+        Check any red flags that apply to the patient. The presence of any red flags may indicate a more serious condition
+        that requires immediate medical attention.
+      </p>
+      {[
+        { name: "fever", label: "Fever (>38°C or 100.4°F)" },
+        { name: "flankPain", label: "Flank pain" },
+        { name: "nausea", label: "Nausea or vomiting" },
+        { name: "rigors", label: "Rigors (shaking chills)" },
+        { name: "acutelyIll", label: "Patient appears acutely ill" },
+        { name: "immunocompromised", label: "Patient is immunocompromised" },
+        { name: "recurrentInfection", label: "Recurrent UTI (≥3 in 12 months or ≥2 in 6 months)" },
+        { name: "failedTreatment", label: "Failed treatment of UTI in the past 

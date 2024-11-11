@@ -1,43 +1,112 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Input } from "@/components/ui/input";
-import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
+import { UseFormReturn } from "react-hook-form"
+import {
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormMessage,
+} from "@/components/ui/form"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
-export function CarePlan() {
+interface CarePlanProps {
+  form: UseFormReturn<any>
+}
+
+export default function Component({ form }: CarePlanProps) {
   return (
     <div className="space-y-4">
-      <div>
-        <Label htmlFor="therapeuticGoal">Therapeutic Goal</Label>
-        <Input id="therapeuticGoal" />
-      </div>
-      <div>
-        <Label htmlFor="monitoringParameters">
-          Monitoring Parameters (including timeframe)
-        </Label>
-        <Input id="monitoringParameters" />
-      </div>
-      <div>
-        <Label htmlFor="conductedBy">Conducted by</Label>
-        <Input id="conductedBy" />
-      </div>
-      <div>
-        <Label htmlFor="date">Date</Label>
-        <Input id="date" type="date" />
-      </div>
-      <div>
-        <Label htmlFor="results">Results</Label>
-        <Textarea id="results" />
-      </div>
-      <div>
-        <Label htmlFor="followUp">Follow-up</Label>
-        <Textarea id="followUp" />
-      </div>
-      <div>
-        <Label htmlFor="additionalComments">
-          Additional comments and recommendations
-        </Label>
-        <Textarea id="additionalComments" />
-      </div>
+      <FormField
+        control={form.control}
+        name="carePlan.therapeuticGoal"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Therapeutic Goal</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="carePlan.monitoringParameters"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Monitoring Parameters (including timeframe)</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="carePlan.conductedBy"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Conducted by</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="carePlan.date"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Date</FormLabel>
+            <FormControl>
+              <Input type="date" {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="carePlan.results"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Results</FormLabel>
+            <FormControl>
+              <Textarea {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="carePlan.followUp"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Follow-up</FormLabel>
+            <FormControl>
+              <Textarea {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="carePlan.additionalComments"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Additional comments and recommendations</FormLabel>
+            <FormControl>
+              <Textarea {...field} />
+            </FormControl>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
     </div>
-  );
+  )
 }

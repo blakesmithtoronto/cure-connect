@@ -1,40 +1,150 @@
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Label } from "@/components/ui/label";
+import { UseFormReturn } from "react-hook-form"
+import {
+  FormField,
+  FormItem,
+  FormLabel,
+  FormControl,
+  FormDescription,
+  FormMessage,
+} from "@/components/ui/form"
+import { Checkbox } from "@/components/ui/checkbox"
+import { Input } from "@/components/ui/input"
+import { Textarea } from "@/components/ui/textarea"
 
-export function Symptoms() {
+interface SymptomsProps {
+  form: UseFormReturn<any>
+}
+
+export default function Symptoms({ form }: SymptomsProps) {
   return (
-    <div className="space-y-3">
-      <div className="flex items-start space-x-2">
-        <Checkbox id="dysuria" className="mt-1" />
-        <Label htmlFor="dysuria" className="leading-none pt-1">
-          Dysuria
-        </Label>
-      </div>
-      <div className="flex items-start space-x-2">
-        <Checkbox id="frequentUrination" className="mt-1" />
-        <Label htmlFor="frequentUrination" className="leading-none pt-1">
-          Frequent urination
-        </Label>
-      </div>
-      <div className="flex items-start space-x-2">
-        <Checkbox id="suprapubicPain" className="mt-1" />
-        <Label htmlFor="suprapubicPain" className="leading-none pt-1">
-          Suprapubic pain
-        </Label>
-      </div>
-      <div className="flex items-start space-x-2">
-        <Checkbox id="urinaryUrgency" className="mt-1" />
-        <Label htmlFor="urinaryUrgency" className="leading-none pt-1">
-          Urinary urgency
-        </Label>
-      </div>
-      <div className="flex items-start space-x-2">
-        <Checkbox id="otherSymptoms" className="mt-1" />
-        <Label htmlFor="otherSymptoms" className="leading-none pt-1">
-          Other
-        </Label>
-      </div>
+    <div className="space-y-6">
+      <FormField
+        control={form.control}
+        name="symptoms.dysuria"
+        render={({ field }) => (
+          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+            <FormControl>
+              <Checkbox
+                checked={field.value}
+                onCheckedChange={field.onChange}
+              />
+            </FormControl>
+            <div className="space-y-1 leading-none">
+              <FormLabel>
+                Dysuria (painful or difficult urination)
+              </FormLabel>
+            </div>
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="symptoms.frequentUrination"
+        render={({ field }) => (
+          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+            <FormControl>
+              <Checkbox
+                checked={field.value}
+                onCheckedChange={field.onChange}
+              />
+            </FormControl>
+            <div className="space-y-1 leading-none">
+              <FormLabel>
+                Frequent urination
+              </FormLabel>
+            </div>
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="symptoms.suprapubicPain"
+        render={({ field }) => (
+          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+            <FormControl>
+              <Checkbox
+                checked={field.value}
+                onCheckedChange={field.onChange}
+              />
+            </FormControl>
+            <div className="space-y-1 leading-none">
+              <FormLabel>
+                Suprapubic pain (pain in the lower abdomen)
+              </FormLabel>
+            </div>
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="symptoms.urinaryUrgency"
+        render={({ field }) => (
+          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+            <FormControl>
+              <Checkbox
+                checked={field.value}
+                onCheckedChange={field.onChange}
+              />
+            </FormControl>
+            <div className="space-y-1 leading-none">
+              <FormLabel>
+                Urinary urgency
+              </FormLabel>
+            </div>
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="symptoms.other"
+        render={({ field }) => (
+          <FormItem className="flex flex-row items-start space-x-3 space-y-0">
+            <FormControl>
+              <Checkbox
+                checked={field.value}
+                onCheckedChange={field.onChange}
+              />
+            </FormControl>
+            <div className="space-y-1 leading-none">
+              <FormLabel>
+                Other symptoms
+              </FormLabel>
+            </div>
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="symptoms.otherDescription"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Other Symptoms Description</FormLabel>
+            <FormControl>
+              <Input {...field} />
+            </FormControl>
+            <FormDescription>
+              If you selected "Other symptoms", please describe them here
+            </FormDescription>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
+      <FormField
+        control={form.control}
+        name="symptoms.patientExpectations"
+        render={({ field }) => (
+          <FormItem>
+            <FormLabel>Patient Expectations</FormLabel>
+            <FormControl>
+              <Textarea {...field} />
+            </FormControl>
+            <FormDescription>
+              Describe the patient's expectations for treatment and outcomes
+            </FormDescription>
+            <FormMessage />
+          </FormItem>
+        )}
+      />
     </div>
-  );
+  )
 }
